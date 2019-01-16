@@ -1,0 +1,42 @@
+Observable design pattern java?
+Can we override private method?
+Difference between override and overload?
+Tibco share variable and job share variable?
+Tibco Xpath ?
+How to call Rest API from Tibco
+Rest API security and can you use secure connection?
+Inside java palate what are activity available?
+Why need to call java plat
+
+
+What are nonfunctional requirement if new project comes
+TIBCO WORK WHAT you have done
+Tibco deployment in the cloud.
+SOA wsdl format
+Binding tag use
+Restful web service documentation 
+Angular js $ variable use
+Angular service and factor difference 
+Angular SPA iteration logic 
+spring xml document tag name 
+java 1.8 new feature
+whats is spring stereotype 
+hash set use 
+
+1.	import java.util.*;  
+2.	class TestCollection9{  
+3.	 public static void main(String args[]){  
+4.	  //Creating HashSet and adding elements  
+5.	  HashSet<String> set=new HashSet<String>();  
+6.	  set.add("Ravi");  
+7.	  set.add("Vijay");  
+8.	  set.add("Ravi");  
+9.	  set.add("Ajay");  
+10.	  //Traversing elements  
+11.	  Iterator<String> itr=set.iterator();  
+12.	  while(itr.hasNext()){  
+13.	   System.out.println(itr.next());  
+14.	  }  
+15.	 }  
+16.	}  
+Hierarchy of Collection Framework
