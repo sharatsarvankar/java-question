@@ -1,0 +1,354 @@
+
+
+ java 1.5 new feature 
+ 
+•         For-each loop (Advanced or Enhanced For loop):
+int arr[]={12,13,14,44};  
+  
+   for(int i:arr){  
+     System.out.println(i);  
+   }  
+•         Variable Argument (Varargs):
+The varrags allows the method to accept zero or muliple arguments. Before varargs either we use overloaded method or take an array as the method parameter but it was not considered good because it leads to the maintenance problem. If we don't know how many argument we will have to pass in the method, varargs is the better approach.
+ 
+static void display(String... values){  
+  System.out.println("display method invoked ");  
+ }  
+ 
+•         Static Import
+import static java.lang.System.*;    
+class StaticImportExample{  
+  public static void main(String args[]){  
+     
+   out.println("Hello");//Now no need of System.out  
+   out.println("Java");  
+  
+ }   
+}  
+ 
+•         Autoboxing and Unboxing:
+The automatic conversion of primitive data types into its equivalent Wrapper type is known as boxing and opposite operation is known as unboxing. 
+ 
+•         Java Annotations
+Java Annotation is a tag that represents the metadata i.e. attached with class, interface, methods or fields to indicate some additional information which can be used by java compiler and JVM.
+@Override
+@SuppressWarnings
+@Deprecated
+ 
+ 
+•         Generics in Java
+Before generics, we can store any type of objects in collection i.e. non-generic. Now generics, forces the java programmer to store specific type of objects.
+Type casting is not required:
+Type-safety
+ 
+ 
+ 
+ 
+ 
+Q: What is Singleton class?
+Double checked locking : Multithreading considerations
+Public class JavaHungrySingleton
+{
+    
+    private static  volatile JavaHungrySingleton  uniqueInstance;
+    
+    private JavaHungrySingleton(){}
+    
+    public static   JavaHungrySingleton  getInstance()
+    {
+        if (uniqueInstance ==null )
+        {
+            synchronized(JavaHungrySingleton.class)
+            {
+                if (uniqueInstance ==null )
+                {
+                    uniqueInstance=new JavaHungrySingleton();
+                }
+            }
+        }
+        return uniqueInstance ;
+    }
+    
+    // other useful methods here
+}
+ 
+ 
+Q: What do you mean by Checked Exceptions?
+ 
+A: It is an exception that is typically a user error or a problem that cannot be foreseen by the programmer. For example, if a file is to be opened, but the file cannot be found, an exception occurs. These exceptions cannot simply be ignored at the time of compilation.
+ 
+Q: Define immutable object?
+ 
+A: An immutable object can’t be changed once it is created.
+ 
+2. What is immutable object? Can you write immutable object? Immutable classes are Java classes whose objects cannot be modified once created. Any modification in Immutable object result in new object. For example is String is immutable in Java. Mostly Immutable are also final in Java, in order to prevent sub class from overriding methods in Java which can compromise Immutability. You can achieve same functionality by making member as non final but private and not modifying them except in constructor.
+ 
+Q: What is a transient variable? - able not to be serialized 
+volatile is used to indicate that a variable's value will be modified by different threads
+Programming with Threads in Java - Javamex: Java tutorials ...
+Getting started: what are threads, and how to use them in Java. It's easier to illustrate what a thread is by diving straight in and seeing some code.
+Read more...
+
+. 
+The value of this variable will never be cached thread-locally: all reads and writes will go straight to "main memory";
+ 
+ 
+Q What does Connection pooling mean
+ 
+ 
+What is the difference between Enumeration and Iterator?
+Enumeration	Iterator
+Enumeration doesn't have a remove() method	Iterator has a remove() method
+Enumeration acts as Read-only interface, because it has the methods only to traverse and fetch the objects	Can be abstract, final, native, static, or synchronized
+Note: So Enumeration is used whenever we want to make Collection objects as Read-only.
+ 
+ 
+Comparator vs Comparable
+ 
+ 
+ 
+Implementation
+ 
+Parameter	Comparable	Comparator
+Sorting logic	Sorting logic must be in same class whose objects are being sorted. Hence this is called natural ordering of objects	Sorting logic is in separate class. Hence we can write different sorting based on different attributes of objects to be sorted. E.g. Sorting using id,name etc.
+Implementation	Class whose objects to be sorted must implement this interface.e.g Country class needs to implement comparable to collection of country object by id	Class whose objects to be sorted do not need to implement this interface.Some other class can implement this interface. E.g.-CountrySortByIdComparator class can implement Comparator interface to sort collection of country object by id
+
+Sorting method	int compareTo(Object o1)
+This method compares this object with o1 object and returns a integer.Its value has following meaning
+1. positive – this object is greater than o1
+2. zero – this object equals to o1
+3. negative – this object is less than o1	int compare(Object o1,Object o2)
+This method compares o1 and o2 objects. and returns a integer.Its value has following meaning.
+1. positive – o1 is greater than o2
+2. zero – o1 equals to o2
+3. negative – o1 is less than o1
+Calling method	Collections.sort(List)
+Here objects will be sorted on the basis of CompareTo method	Collections.sort(List, Comparator)
+Here objects will be sorted on the basis of Compare method in Comparator
+Package	Java.lang.Comparable
+ 	Java.util.Comparator
+ 
+ 
+ 
+.What is a marker interface?
+Marker interfaces are those which do not declare any required methods, but signify their compatibility with certain operations. The java.io.Serializable interface and Cloneable are typical marker interfaces. These do not contain any methods, but classes must implement this interface in order to be serialized and de-serialized.
+ 
+ 
+ifference between HashMap and Hashtable ?
+HashMap	Hashtable
+HashMap lets you have null values as well as one null key.	HashTable  does not allows null values as key and value.
+The iterator in the HashMap is fail-safe (If you change the map while iterating, you’ll know).	The enumerator for the Hashtable is not fail-safe.
+HashMap is unsynchronized.	Hashtable is synchronized.
+Note: Only one NULL is allowed as a key in HashMap. HashMap does not allow multiple keys to be NULL. Nevertheless, it can have multiple NULL values.
+ 
+ 
+ 
+Servlet
+ 
+ 
+ 
+Q. What’s the difference between sendRedirect and forward methods?
+ 
+ 
+ 
+Jsp
+ 
+What difference is between include directive and include action?
+ 
+include directive	include action
+1) The include directive includes the content at page translation time.	1) The include action includes the content at request time.
+2) The include directive includes the original content of the page so page size increases at runtime.	2) The include action doesn't include the original content rather invokes the include() method of Vendor provided class.
+3) It's better for static pages.	3) It's better for dynamic pages.
+ 
+Q What is meant by implicit objects and what are they
+ 
+  *   application
+  *   page
+  *   request
+  *   response
+  *   session
+  *   exception
+  *   out
+  *   config
+  *   pageContext
+ 
+ 
+ 
+ 
+ 
+Q.What are the different kinds of actions in Struts?
+ 
+The different kinds of actions in Struts are:
+ 
+  *   ForwardAction
+  *   IncludeAction
+  *   DispatchAction
+  *   LookupDispatchAction
+  *   SwitchAction
+ 
+Q.What is SwitchAction?
+ 
+The SwitchAction class provides a means to switch from a resource in one module to another resource in a different module. SwitchAction is useful only if you have multiple modules in your Struts application. The SwitchAction class can be used as is, without extending.
+ 
+Q. What are differences between <bean:message> and <bean:write>
+ 
+<bean:message>: is used to retrive keyed values from resource bundle. It also supports the ability to include parameters that can be substituted for defined placeholders in the retrieved string.
+ 
+<bean:message key="prompt.customer.firstname"/>
+ 
+<bean:write>: is used to retrieve and print the value of the bean property. <bean:write> has no body.
+ 
+<bean:write name="customer" property="firstName"/>
+ 
+How duplicate form submission can be controlled in Struts?
+Ans: In Struts, action class provides two important methods which can be used to avoid duplicate form submissions.
+saveToken() method of action class generates a unique token and saves it in the user’s session. isTokenValid() method is used then used to check uniqueness of tokens.
+ 
+ 
+EJB
+ 
+Question 8:What are the transaction Attribute ?
+This kind of EJB questions mostly askedin telephonic interviews but believe me its not easy to answer if you have not really used transaction management feature of EJB. Its easy to mug all these transaction attribute and spill in interview but once interviewer asked cross question you will most likely cripple.
+ 
+Ans: Transaction is group of operation or work which should be performed either completely or none to maintain the data integrity. All transaction must have ACID property(atomicity ,consistency,integrity,durability) so transaction can be said completed if we commit on successful execution and rollback on unsuccessful execution.
+There are two ways of transaction management.
+•          Declarative Transaction Mang.
+•          Programmatic Transaction Mang.
+Now we see what the transactions Attribute are
+Transaction Attribute conveys to the container the intended transactional behavior of the associated EJB component's method.
+ 
+Required: if required attribute is associated with Method then new Transaction context may or may not be created, means if method is already associated with transaction context then no new transaction context should be created.
+ 
+Requires New: if Requires New attribute is associated with Method then always new Transaction context may be created.
+ 
+NotSupported:if Method is Associated with this Attribute then method is  a not a part of transaction.
+ 
+Supported:if a Method is Associated with this transaction Attribute then method will act as Not supported if calling component is not associated with transaction and if calling component is associated with transaction then act as a required Attribute.
+ 
+Mandatory:if a method is Associated with this attribute then always be called from calling component transaction context.
+ 
+Never: if a method is Associated with this attribute then never  be called from calling component transaction context.
+The default transaction value for EJB is Support.
+
+
+Read more: http://javarevisited.blogspot.com/2012/03/top-10-ejb-interview-question-and.html#ixzz3eUZVItp5
+ 
+ 
+Spring
+ 
+ 
+ 
+What are the different types of IOC (dependency injection) ?
+ 
+•  Constructor Injection (e.g. Pico container, Spring etc): Dependencies are provided as constructor parameters.
+ 
+•  Setter Injection (e.g. Spring): Dependencies are assigned through JavaBeans properties (ex: setter methods).
+ 
+•  Interface Injection (e.g. Avalon): Injection is done through an interface.
+ 
+ 
+ 
+Q. What is the difference between Bean Factory and Application Context ?
+What is Bean Factory ?
+A BeanFactory is like a factory class that contains a collection of beans. The BeanFactory holds Bean Definitions of multiple beans within itself and then instantiates the bean whenever asked for by clients.
+•	BeanFactory is able to create associations between collaborating objects as they are instantiated. This removes the burden of configuration from bean itself and the beans client.
+•	BeanFactory also takes part in the life cycle of a bean, making calls to custom initialization and destruction methods.
+ 
+10. What is Application Context?
+A bean factory is fine to simple applications, but to take advantage of the full power of the Spring framework, you may want to move up to Springs more advanced container, the application context. On the surface, an application context is same as a bean factory. Both load bean definitions, wire beans together, and dispense beans upon request. But it also provides:
+•	A means for resolving text messages, including support for internationalization.
+•	A generic way to load file resources like image
+ 
+ 
+ 
+Q. What do you mean by Auto Wiring?
+ 
+   The Spring container is able to autowire relationships between collaborating beans. This means that it is possible to automatically let Spring resolve collaborators (other beans) for your bean by inspecting the contents of the BeanFactory. The autowiring functionality has five modes.
+ 
+  *   no
+  *   byName
+  *   byType
+  *   constructor
+  *   autodetect
+ 
+What are different Modes of auto wiring?
+ 
+The autowiring functionality has five modes which can be used to instruct spring container to use autowiring for dependency injection:
+ 
+·        no: This is default setting which means no autowiring and you should use explicit bean reference for wiring. You have nothing to do special for this wiring. This is what you already have seen in Dependency Injection chapter.
+ 
+·        byName: Autowiring by property name. Spring container looks at the properties of the beans on which autowire attribute is set to byName in the XML configuration file. It then tries to match and wire its properties with the beans defined by the same names in the configuration file.
+ 
+·        byType: Autowiring by property datatype. Spring container looks at the properties of the beans on which autowire attribute is set to byType in the XML configuration file. It then tries to match and wire a property if its type matches with exactly one of the beans name in configuration file. If more than one such beans exist, a fatal exception is thrown.
+ 
+·        constructor: Similar to byType, but type applies to constructor arguments. If there is not exactly one bean of the constructor argument type in the container, a fatal error is raised.
+ 
+·        autodetect: Spring first tries to wire using autowire by constructor, if it does not work, Spring tries to autowire by byType.
+ 
+ 
+Limitations with autowiring:
+imitations	Description
+Overriding possibility	You can still specify dependencies using <constructor-arg> and <property> settings which will always override autowiring.
+Primitive data types	You cannot autowire so-called simple properties such as primitives, Strings, and Classes.
+Confusing nature	Autowiring is less exact than explicit wiring, so if possible prefer using explict wiring.
+ 
+Hibernate 
+ 
+15. What’s the difference between session.save() and session.saveOrUpdate() methods in hibernate?
+Sessionsave() method saves a record only if it’s unique with respect to its primary key and will fail to insert if primary key already exists in the table.
+saveOrUpdate() method inserts a new record if primary key is unique and will update an existing record if primary key exists in the table already.
+ 
+ 
+41. What’s the difference between load() and get() method in hibernate?
+Load() methods results in an exception if the required records isn’t found in the database while get() method returns null when records against the id isn’t found in the database.
+So, ideally we should use Load() method only when we are sure about existence of records against an id.
+ 
+What are the states of object in hibernate?
+There are 3 states of object (instance) in hibernate.
+1.	Transient: The object is in transient state if it is just created but has no primary key (identifier) and not associated with session.
+2.	Persistent: The object is in persistent state if session is open, and you just saved the instance in the database or retrieved the instance from the database.
+3.	Detached: The object is in detached state if session is closed. After detached state, object comes to persistent state if you call lock() or update() method.
+Detached objects can be passed across layers all the way up to the presentation layer without having to use any DTOs (Data Transfer Objects). You can later on re-attach the detached objects to another session. 
+ 
+dirty check in hibernate
+ 
+The automatic dirty checking feature of hibernate, calls update statement automatically on the objects that are modified in a transaction.
+ 
+What is lazy fetching in Hibernate?
+Ans: In Hibernate Lazy fetching is associated with child objects loading for its parents. Through Hibernate mapping file (.hbm.xml) you can specified the selection of loading child objects. By default Hibernate does not load child objects. Lazy=rue means not to load the child objects.
+Critical query in hibernate
+ 
+ 
+ 
+Q3. How would you decide what style of Web Service to use? SOAP WS or REST?
+A3. In general, a REST based Web service is preferred due to its simplicity, performance, scalability, and support for multiple data formats. SOAP is favored where service requires comprehensive support for security and transactional reliability.
+The answer really depends on the functional and non-functional requirements. Asking the questions listed below will help you choose.
+1) Does the service expose data or business logic? (REST is a better choice for exposing data, SOAP WS might be a better choice for logic).
+2) Do consumers and the service providers require a formal contract? (SOAP has a formal contract via WSDL)
+3) Do we need to support multiple data formats?
+4) Do we need to make AJAX calls? (REST can use the XMLHttpRequest)
+5) Is the call synchronous or asynchronous?
+6) Is the call stateful or stateless? (REST is suited for statless CRUD operations)
+7) What level of security is required? (SOAP WS has better support for security)
+8) What level of transaction support is required? (SOAP WS has better support for transaction management)
+9) Do we have limited band width? (SOAP is more verbose)
+10) What’s best for the developers who will build clients for the service? (REST is easier to implement, test, and maintain)
+ 
+What is differences between RESTful web services and SOAP web services ?
+Though both RESTful web series and SOAP web service can operate cross platform they are architecturally different to each other, here is some of differences between REST and SOAP:
+
+1) REST is more simple and easy to use than SOAP
+2) REST uses HTTP protocol for producing or consuming web services while SOAP uses XML.
+3) REST is lightweight as compared to SOAP and preferred choice in mobile devices and PDA's.
+4) REST supports different format like text, JSON and XML while SOAP only support XML.
+5) REST web services call can be cached to improve performance.
+ 
+ 
+ WHO has to distribute max medical kit to b city and n medical center so medical kit should not waste
+Example city is 2 and medical center is 7.
+1st city population is 300,000
+2nd city population is 400,000
+Then distribute 1city 3 medical center and 2nd city medical center 4. Then each city you can distribute 100,000
+
+ 
+
