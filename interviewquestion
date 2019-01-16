@@ -40,3 +40,295 @@ hash set use
 15.	 }  
 16.	}  
 Hierarchy of Collection Framework
+
+
+Can lambda expression use instance variable of class?
+What is stream API?
+What is generic? 
+How to resticked generic class to its subclass
+
+Wildcard in Java Generics
+The ? (question mark) symbol represents wildcard element. It means any type. If we write <? extends Number>, it means any child class of Number e.g. Integer, Float, double etc. Now we can call the method of Number class through any child class object.
+Let's understand it by the example given below:
+1.	import java.util.*;  
+2.	abstract class Shape{  
+3.	abstract void draw();  
+4.	}  
+5.	class Rectangle extends Shape{  
+6.	void draw(){System.out.println("drawing rectangle");}  
+7.	}  
+8.	class Circle extends Shape{  
+9.	void draw(){System.out.println("drawing circle");}  
+10.	}  
+11.	  
+12.	  
+13.	class GenericTest{  
+14.	//creating a method that accepts only child class of Shape  
+15.	public static void drawShapes(List<? extends Shape> lists){  
+16.	for(Shape s:lists){  
+17.	s.draw();//calling method of Shape class by child class instance  
+18.	}  
+19.	}  
+20.	public static void main(String args[]){  
+21.	List<Rectangle> list1=new ArrayList<Rectangle>();  
+22.	list1.add(new Rectangle());  
+23.	  
+24.	List<Circle> list2=new ArrayList<Circle>();  
+25.	list2.add(new Circle());  
+26.	list2.add(new Circle());  
+27.	  
+28.	drawShapes(list1);  
+29.	drawShapes(list2);  
+30.	}}  
+drawing rectangle
+drawing circle
+drawing circle
+
+
+Wildcards in Java
+The question mark (?) is known as the wildcard in generic programming . It represents an unknown type. The wildcard can be used in a variety of situations such as the type of a parameter, field, or local variable; sometimes as a return type. Unlike arrays, different instantiations of a generic type are not compatible with each other, not even explicitly. This incompatibility may be softened by the wildcard if ? is used as an actual type parameter.
+Types of wildcards in Java:
+1.	Upper Bounded Wildcards: These wildcards can be used when you want to relax the restrictions on a variable. For example, say you want to write a method that works on List < integer >, List < double >, and List < number > , you can do this  using an upper bounded wildcard.
+To declare an upper-bounded wildcard, use the wildcard character (‘?’), followed by the extends keyword, followed by its upper bound.
+public static void add(List<? extends Number> list)
+Implementation:
+//Java program to demonstrate Upper Bounded Wildcards
+import java.util.Arrays;
+import java.util.List;
+ 
+class WildcardDemo
+{
+    public static void main(String[] args)
+    {
+         
+        //Upper Bounded Integer List
+        List<Integer> list1= Arrays.asList(4,5,6,7);
+         
+        //printing the sum of elements in list
+        System.out.println("Total sum is:"+sum(list1));
+ 
+        //Double list
+        List<Double> list2=Arrays.asList(4.1,5.1,6.1);
+         
+        //printing the sum of elements in list
+        System.out.print("Total sum is:"+sum(list2));
+    }
+ 
+    private static double sum(List<? extends Number> list) 
+    {
+        double sum=0.0;
+        for (Number i: list)
+        {
+            sum+=i.doubleValue();
+        }
+ 
+        return sum;
+    }
+}
+Run on IDE
+Output:
+
+
+
+Total sum is:22.0
+Total sum is:15.299999999999999
+In the above program, list1 and list2 are objects of the List class. list1 is a collection of Integer and list2 is a collection of Double. Both of them are being passed to method sum which has a wildcard that extends Number. This means that list being passed can be of any field or subclass of that field. Here, Integer and Double are subclasses of class Number.
+2.	Lower Bounded Wildcards: It is expressed using the wildcard character (‘?’), followed by the super keyword, followed by its lower bound: <? super A>.
+ Syntax: Collectiontype <? super A>
+Implementation:
+//Java program to demonstrate Lower Bounded Wildcards
+import java.util.Arrays;
+import java.util.List;
+ 
+class WildcardDemo
+{
+    public static void main(String[] args)
+    {
+        //Lower Bounded Integer List
+        List<Integer> list1= Arrays.asList(4,5,6,7);
+         
+        //Integer list object is being passed
+        printOnlyIntegerClassorSuperClass(list1);
+ 
+        //Number list
+        List<Number> list2= Arrays.asList(4,5,6,7);
+         
+        //Integer list object is being passed
+        printOnlyIntegerClassorSuperClass(list2);
+    }
+ 
+    public static void printOnlyIntegerClassorSuperClass(List<? super Integer> list)
+    {
+        System.out.println(list);
+    }
+}
+Run on IDE
+Output:
+[4, 5, 6, 7]
+[4, 5, 6, 7]
+Here arguments can be Integer or superclass of Integer(which is Number). The method printOnlyIntegerClassorSuperClass will only take Integer or its superclass objects. However if we pass list of type Double then we will get compilation error. It is because only the Integer field or its superclass can be passed . Double is not the superclass of Integer.
+Use extend wildcard when you want to get values out of a structure and super wildcard when you put values in a structure. Don’t use wildcard when you get and put values in a structure.
+Note: You can specify an upper bound for a wildcard, or you can specify a lower bound, but you cannot specify both.
+3.	Unbounded Wildcard: This wildcard type is specified using the wildcard character (?), for example, List. This is called a list of unknown type. These are useful in the following cases
+	When writing a method which can be employed using functionality provided in Object class.
+	When the code is using methods in the generic class that don’t depend on the type parameter
+Implementation:
+//Java program to demonstrate Unbounded wildcard
+import java.util.Arrays;
+import java.util.List;
+ 
+class unboundedwildcardemo
+{
+    public static void main(String[] args) 
+    {
+ 
+        //Integer List
+        List<Integer> list1= Arrays.asList(1,2,3);
+ 
+        //Double list
+        List<Double> list2=Arrays.asList(1.1,2.2,3.3);
+ 
+        printlist(list1);
+ 
+        printlist(list2);
+    }
+ 
+    private static void printlist(List<?> list) 
+    {
+ 
+        System.out.println(list);
+    }
+}
+Run on IDE
+Output:
+[1, 2, 3]
+[1.1, 2.2, 3.3]
+This article is contributed by Nishant Sharma. If you like GeeksforGeeks and would like to contribute, you can also write an article using contribute.geeksforgeeks.org or mail your article to contribute@geeksforgeeks.org. See your article appearing on the GeeksforGeeks main page and help other Geeks.
+Please write comments if you find anything incorrect, or you want to share more information about the topic discussed above.
+
+
+Java support pass by reference and pass by value
+
+"Java manipulates objects 'by reference,' but it passes object references to methods 'by value.'" 
+
+https://www.journaldev.com/3884/java-is-pass-by-value-and-not-pass-by-reference
+
+
+11. What is the difference between ng-show/ng-hide and ng-if directives?
+a. ng-show/ng-hide will always insert the DOM element, but will display/hide it based on the condition. ng-if will not insert the DOM element until the condition is not fulfilled.
+b. ng-if is better when we needed the DOM to be loaded conditionally, as it will help load page bit faster compared to ng-show/ng-hide.
+
+. What is the difference between one-way binding and two-way binding?
+a. One way binding implies that the scope variable in the html will be set to the first value its model is bound to (i.e. assigned to)
+b. Two way binding implies that the scope variable will change it’s value everytime its model is assigned to a different value
+
+http://career.guru99.com/top-25-angular-js-interview-questions/
+
+
+8) Mention what are the advantages of using AngularJS ?
+AngularJS has several advantages in web development.
+•	AngularJS supports MVC pattern
+•	Can do two ways data binding using AngularJS
+•	It has per-defined form validations
+•	It supports both client server communication
+•	It supports animations
+
+
+JPA 
+
+http://www.journaldev.com/3633/hibernate-interview-questions-and-answers#named-sql-query
+
+http://www.withoutbook.com/Technology.php?tech=47&page=1&subject=JPA%20Interview%20Questions%20and%20Answers
+
+
+. State The Core Components Of An HTTP Request?
+Ans. Each HTTP request includes five key elements.
+1. Verb which indicates HTTP methods such as GET, PUT, POST, and DELETE.
+2. URI stands for Uniform Resource Identifier (URI).It is the identifier for the resource on the server.
+3. HTTP Version which indicates HTTP version, for example-HTTP v1.1.
+4. Request Header carries metadata (as key-value pairs) for the HTTP Request message. Metadata could be a client (or browser) type, the format that client supports, message body format, and cache settings.
+5. Request Body indicates the message content or resource representation.
+ 
+Q-8. State The Core Components Of An HTTP Response?
+Ans. Every HTTP response includes four key elements.
+1. Status/Response Code – Indicates Server status for the resource present in the HTTP request.For example, 404 means resource not found and 200 means response is ok.
+2. HTTP Version – Indicates HTTP version, for example-HTTP v1.1.
+3. Response Header – Contains metadata for the HTTP response message stored in the form of key-value pairs. For example, content length, content type, response date, and server type.
+4. Response Body – Indicates response message content or resource representation.
+
+Q-11. Is There Any Difference Between PUT And POST Operations? Explain It.
+Ans. PUT and POST operation are almost same. The only difference between the two is in the terms of the result generated by them.
+PUT operation is idempotent while POST operation can give a different result.
+Let’s take an example.
+1. PUT puts a file or resource at a particular URI and exactly at that URI. If the resource already exists, then PUT updates it. If it’s a first-time request, then PUT creates one.
+2. POST sends data to a particular URI and expects the resource at that URI to deal with the request. The web server at this point can decide what to do with the data in the context of specified resource.
+
+Q-17. List The Main Differences Between SOAP And REST?
+Ans.
+                        SOAP	                      REST
+1. SOAP is a protocol through which two computer communicates by sharing XML document.	1. Rest is a service architecture and design for network-based software architecture.
+2. SOAP supports the only XML format.	2. It supports many different data formats.
+3. SOAP does not support caching.	3. It supports caching.
+4. SOAP is like custom desktop application, closely connected to the server.	4. A REST client is just like a browser and uses standard methods. An application has to fit inside it.
+5. SOAP is slower than REST.	5. It is faster than SOAP.
+6. It runs on HTTP but envelopes the message.	6. It uses the HTTP headers to hold meta information.
+
+
+
+Q-18. What Type Of Tools Are Available To Test Web Services?
+Ans. Following tools can help in testing the SOAP and RESTful web services.
+1. SOAP UI tool.
+2. Poster for Firefox browser.
+3. The Postman extension for Chrome.
+ 
+Q-19. Explain The Factors That Help To Decide About The Style Of Web Service To Use? SOAP Or REST?
+Ans. In general, using REST based web service is preferred due to its simplicity, performance, scalability, and support for multiple data formats.
+However, SOAP is favorable to use where service requires an advanced level of security and transactional reliability.
+But you can read the following facts before opting for any of the styles.
+1. Does the service expose data or business logic? To expose data REST will be a better choice and SOAP for logic.
+2. If the consumer or the service providers require a formal contract, then SOAP can provide such a contract via WSDL.
+3. Need to support multiple data formats. REST supports this.
+4. Support for AJAX calls. REST can use the XMLHttpRequest. 
+5. Synchronous and asynchronous calls – SOAP enables both synchronous/asynchronous operations whereas REST has built-in support for synchronous.
+6. Stateless or Stateful calls -REST is suited for stateless operations.
+Here are some of the advanced-level facts that you can consider as well.
+1. Security requirement – SOAP provides a high level of security.
+2. Transaction support – SOAP has good support for transaction management.
+3. Limited bandwidth – SOAP has a lot of overhead when sending/receiving packets since it’s XML based, requires a SOAP header. However, REST requires less bandwidth to send requests to the server. Its messages are mostly built using JSON.
+4. Ease of use – It is easy to implement, test, and maintain REST based application.
+ 
+
+5. What do you mean by Idempotent and which HTTP methods are idempotent?
+Idempotent means result of multiple successful request will not change state of resource after initial application
+For example : Delete is idempotent method because when you first time use delete, it will delete the resource (initial application) but after that, all other request will have no result because resource is already deleted. Get, put and delete are HTTP Idempotent methods.
+
+6. What are differences between Post and Put Http methods?
+POST :It is used for creating a new resource. It is not idempotent.
+PUT : It is generally used for updating resource. It is idempotent.
+Idempotent means result of multiple successful request will not change state of resource after initial application
+
+7. What happens if resources are shared by multiple clients? Do you need to make it thread safe explicitly?
+New resource instance is created for each request, so you don't need to implement thread safety or synchronization aid. It is by default thread safe.
+Read more at http://www.java2blog.com/2016/06/restful-web-services-interview-questions.html#Wx0WYfcG8i2fMOqd.99
+10. What are some important annotations which you use to create Restful web services?
+Some of important annotations which are used for creating web services are:
+@Path : This is used to set path for URI at class level or method level
+@GET,@POST,@PUT,@DELETE  : There are annotations corresponds to HTTP methods
+@Produces(MediaType.TEXT_XML [, more-types ]): @Produces defines which MIME type is delivered by a method
+@PathParam: Used to inject values from the URL into a method parameter.
+@Consumes(MediaType.TEXT_XML) : @Cosumes defines which MIME type will be consumed by the method .
+Read more at http://www.java2blog.com/2016/06/restful-web-services-interview-questions.html#Wx0WYfcG8i2fMOqd.99
+uestion 12 : What do you understand by payload in RESTFul?
+Answer : Payload means data which passed inside request body also payload is not request parameters. So only you can do payload in POST  and not in GET and DELTE method
+
+
+Question 13 : Can you do payload in GET method?
+Answer : No, payload can only be passed using POST method.
+
+
+Question 14 : Can you do payload in HTTP DELETE?
+Answer : This is again similar to previous REST interview question, answer is No. You can only pass payload using HTTP POST method.
+
+
+Read more: http://www.java67.com/2015/09/top-10-restful-web-service-interview-questions-answers.html#ixzz4XNOdHnUp
+
