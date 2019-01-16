@@ -350,5 +350,97 @@ Example city is 2 and medical center is 7.
 2nd city population is 400,000
 Then distribute 1city 3 medical center and 2nd city medical center 4. Then each city you can distribute 100,000
 
+
+Java 1.7 code
+
+1.	Array <String > array = new Array<>();
+
+2.	Try(FileSteram fs= new fileStrream() )  tryy blocks doing automatic resource management
+{
+} catch (Exception e)
+
+3.	String use in switch case
+4.	Auto garbage collection 
+5.	LinkedList 
+
+What are the new features related to Exception Handling introduced in Java7?
+Automatic resource management. JVM takes care of closing the connection when we use try with resources.
+  try (FileInputStream input = new FileInputStream("file.txt")) {
+   int data = input.read();
+   while (data != -1) {
+    System.out.print((char) data);
+    data = input.read();
+   }
+  }
+Multiple Repeated Exception Blocks not needed anymore. We can use a single exception block to catch multiple exception types.
+catch (IOException|SQLException ex) {
+    logger.log(ex);
+    throw ex;
+}
+
+Java 1.8 code
+
+Lamda expression : annanoume class can replace by ->  
+
+collection.sort(person, p1,p2-> p1.compareto(p2))
+
+Functional interface having only one method 
+new Thread( () -> system.out.print(“test”))
+
+
+Method reference :: 
+
+list.replaceAll( String::toUpperCase)
+
+list.foreach( p-> system.out.print(“test”))
+
+default implementation of interface by default 
+
+foreach() method 
+
+Stream API
+
+How to get synchrized version of array list
+ArrayList<String> al = new ArrayList<String>();
+List l1= Collections.synchronizedList(al);
+
+dilete in hibernate
+
+Linked list and array list difference. 
+
+
+ConcurrentHashMap
+
+The ConcurrentHashMap is very similar to the java.util.HashTable class, except that ConcurrentHashMap offers better concurrency than HashTable does. ConcurrentHashMap does not lock the Map while you are reading from it. Additionally, ConcurrentHashMap does not lock the entire Map when writing to it. It only locks the part of the Map that is being written to, internally.
+
+Another difference is that ConcurrentHashMap does not throw ConcurrentModificationException if the ConcurrentHashMap is changed while being iterated. The Iterator is not designed to be used by more than one thread though.
+
+
+Difference between CopyOnWriteArrayList and ArrayList in Java.
+In last section we have seen What is CopyOnWriteArrayList in Java and How it achieves thread-safety by creating a separate copy of List for each write operation. Now let's see Some difference between ArrayList and CopyOnWriteArrayList in Java , which is another implementation of List interface :
+
+1) First and foremost difference between CopyOnWriteArrayList and ArrayList in Java is that CopyOnWriteArrayList is a thread-safe collection while ArrayList is not thread-safe and cannot be used in multi-threaded environment.
+
+2) Second difference between ArrayList and CopyOnWriteArrayList is that Iterator of ArrayList is fail-fast and throw ConcurrentModificationException once detect any modification in List once iteration begins but Iterator of CopyOnWriteArrayList is fail-safe and doesn't throw ConcurrentModificationException.
+
+3) Third difference between CopyOnWriteArrayList vs ArrayList is that Iterator of former doesn't support remove operation while Iterator of later supports remove() operation.
+
+Read more: http://java67.blogspot.com/2012/09/what-is-copyonwritearraylist-in-java-example-vs-arraylist.html#ixzz3tIZ0jPRm
+
+Why string is immutable, how we handling batch processing in hibernate, 
+how we are handling large amount of data in hibernate ,
+how we explicitly set secondry level cache
+
+Session factor and session difference 
+Cache enable in hibernate
+Spring IOC concept
+Check and unchecked exception
+ant confingration file build.xml
+maven and ant difference
+SOAP and Rest Ful API
+JPA use in your project 
+
+
+
  
 
