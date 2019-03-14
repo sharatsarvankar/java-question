@@ -332,3 +332,6 @@ Answer : This is again similar to previous REST interview question, answer is No
 
 Read more: http://www.java67.com/2015/09/top-10-restful-web-service-interview-questions-answers.html#ixzz4XNOdHnUp
 
+what is default size of executor fix thread pool: 
+it is depend upon CPU core. getporcees method will return actual size of the CPU core 
+
